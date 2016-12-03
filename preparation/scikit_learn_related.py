@@ -12,4 +12,4 @@ class CategoricalToNumerical(Stage):
 
 
 def get_stages():
-    return [CategoricalToNumerical]
+    return [CategoricalToNumerical()]

@@ -105,15 +105,18 @@ class LogTransformNumericalFeature(Stage):
         skewed_feats = all_data[numeric_feats].apply(lambda x: skew(x.dropna()))
         skewed_feats = skewed_feats[skewed_feats > 0.75]
         skewed_feats = skewed_feats.index
-
         all_data[skewed_feats] = np.log1p(all_data[skewed_feats])
         return all_data
 
 
 class SubtractYears(Stage):
     def run(self, all_data):
-        numeric_feats = all_data.dtypes[all_data.dtypes != "object"].index
+        all_data["YearBuilt"] = all_data["YearBuilt"] - 1800
+        all_data["GarageYrBlt"] = all_data["GarageYrBlt"] - 1800
+        all_data["YearRemodAdd"] = all_data["YearRemodAdd"] - 1800
+        all_data["YrSold"] = all_data["YrSold"] - 1800
+        return all_data
 
 
 def get_stages():
-    return [ReplaceMonth, ReplaceOrderedStrings, LogTransformNumericalFeature]
+    return [SubtractYears(), ReplaceMonth(), ReplaceOrderedStrings(), LogTransformNumericalFeature()]

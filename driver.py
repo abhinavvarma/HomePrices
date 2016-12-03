@@ -33,11 +33,12 @@ def train(X_train, y_train):
 def evaluate(model, x_test, y_test):
     # print (model.predict(x_test) - y_test)
     # The mean squared error
-    print("Mean squared error: %f"
-          % sqrt(np.mean((model.predict(x_test) - y_test) ** 2))
-          )
+    rmse = sqrt(np.mean((model.predict(x_test) - y_test) ** 2))
+    print("Mean squared error: %f"% rmse)
     # Explained variance score: 1 is perfect prediction
-    print('R Square: %f' % model.score(x_test, y_test))
+    r_square = model.score(x_test, y_test)
+    print('R Square: %f' % r_square)
+    return r_square
 
 def normalize_target(series):
     # log transform the target:
@@ -51,14 +52,26 @@ def run_preprocessing_stages(preprocessing_stages):
     x_processed = preparation.run(x_processed)
     x_train, y_train, x_test, y_test = partition(x_processed, y)
     model = train(x_train, normalize_target(y_train))
-    evaluate(model, x_test, normalize_target(y_test))
+    return evaluate(model, x_test, normalize_target(y_test))
 
+def cmp(a,b):
+    if a[0] == b[0]:
+        return 0
+    if a[0] < b[0]:
+        return -1
+    if a[0] > b[0]:
+        return 1
 
-def calculate_preprocessing_effect():
-    run_preprocessing_stages([])
+def calculate_preprocessing_impact():
+    impact = []
+    impact.append((run_preprocessing_stages([]), None))
     for stage in preprocessing.get_stages():
         print "---------------------------------------"
-        run_preprocessing_stages([stage])
+        impact.append((run_preprocessing_stages([stage]), stage))
+    impact.pop(0)
+    impact.sort(key=lambda tup: -tup[0])
+    # print [(t[0], t[1].cols) for t in impact]
+    print impact
 
 
 def run_everything():
@@ -66,4 +79,5 @@ def run_everything():
 
 
 if __name__ == '__main__':
-    calculate_preprocessing_effect()
+    # run_everything()
+    calculate_preprocessing_impact()

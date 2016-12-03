@@ -45,4 +45,4 @@ class MeaningfulNAs(Stage):
 
 
 def get_stages():
-    return [MeaningfulNAs]
+    return [MeaningfulNAs()]
