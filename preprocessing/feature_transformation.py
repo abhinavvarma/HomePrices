@@ -99,18 +99,20 @@ class ReplaceOrderedStrings(Stage):
 
 class LogTransformNumericalFeature(Stage):
     def run(self, all_data):
-        # log transform the target:
-        # train["SalePrice"] = np.log1p(train["SalePrice"])
-
         # log transform skewed numeric features:
         numeric_feats = all_data.dtypes[all_data.dtypes != "object"].index
-
-        skewed_feats = all_data[numeric_feats].apply(lambda x: skew(x.dropna()))  # compute skewness
+        # compute skewness
+        skewed_feats = all_data[numeric_feats].apply(lambda x: skew(x.dropna()))
         skewed_feats = skewed_feats[skewed_feats > 0.75]
         skewed_feats = skewed_feats.index
 
         all_data[skewed_feats] = np.log1p(all_data[skewed_feats])
         return all_data
+
+
+class SubtractYears(Stage):
+    def run(self, all_data):
+        numeric_feats = all_data.dtypes[all_data.dtypes != "object"].index
 
 
 def get_stages():

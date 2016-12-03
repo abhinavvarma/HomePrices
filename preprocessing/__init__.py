@@ -6,8 +6,9 @@ def get_stages():
 
 
 def run_stages(all_data, stages):
+    print "Preprocessing:"
     for stage in stages:
-        print "Preprocessing: Stage:", stage
+        print "Stage:", stage
         all_data = stage().run(all_data)
     return all_data
 

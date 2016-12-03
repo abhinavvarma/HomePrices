@@ -4,7 +4,7 @@ from utils import Stage
 class MeaningfulNAs(Stage):
     def run(self, all_data):
         all_data.loc[all_data.Alley.isnull(), 'Alley'] = 'NoAlley'
-        all_data.loc[all_data.MasVnrType.isnull(), 'MasVnrType'] = 'None'  # no good
+        all_data.loc[all_data.MasVnrType.isnull(), 'MasVnrType'] = 'None'
         all_data.loc[all_data.MasVnrType == 'None', 'MasVnrArea'] = 0
         all_data.loc[all_data.BsmtQual.isnull(), 'BsmtQual'] = 'NoBsmt'
         all_data.loc[all_data.BsmtCond.isnull(), 'BsmtCond'] = 'NoBsmt'

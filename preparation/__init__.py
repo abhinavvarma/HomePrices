@@ -6,7 +6,8 @@ def get_stages():
 
 
 def run(all_data):
+    print "Preparation:"
     for stage in get_stages():
-        print "Preparation: Stage:", stage
+        print "Stage:", stage
         all_data = stage().run(all_data)
     return all_data
