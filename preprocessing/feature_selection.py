@@ -18,17 +18,17 @@ def get_combined():
     l = [(0.82369823666195519, 'GrLivArea'), (0.82369823666195685, 'BsmtUnfSF'), (0.82369823666196829, 'BsmtFinSF2'),
          (0.82370138871406418, 'MasVnrArea'), (0.82372079177733304, 'MiscVal'), (0.82372575464538744, 'BedroomAbvGr'),
          (0.82373139737294521, 'OpenPorchSF'), (0.82376191065774784, 'MSSubClass'),
-         (0.82383761947767531, 'BsmtFinType2'), (0.82384758543502246, 'GarageType'), (0.82386141952531433, 'HalfBath'),
+         (0.82383761947767531, 'BsmtFinType2'), (0.82384758543502246, 'GarageType'),
          (0.82390961410196195, 'HouseStyle'), (0.82393231571339387, 'MoSold'), (0.82394616561091905, 'ExterCond'),
          (0.82407952012907271, 'ExterQual'), (0.82410305288213126, 'Fireplaces'), (0.82422720251187398, 'BsmtQual'),
          (0.82430481290910129, 'LotFrontage'), (0.82435621918472424, 'BsmtCond'), (0.82454082677366924, 'RoofStyle'),
          (0.82466850644181577, 'YrSold'), (0.82487443015303608, 'YearBuilt'), (0.82501893091291767, 'YearRemodAdd'),
-         (0.82529876940850466, 'FullBath'), (0.82541534555431062, 'Electrical'), (0.82557786860332194, 'Alley'),
-         (0.8256767231647576, 'PoolQC'), (0.82647669261893386, 'PavedDrive'), (0.82655700126304987, 'Exterior1st'),
+         (0.82541534555431062, 'Electrical'),
+         (0.82647669261893386, 'PavedDrive'), (0.82655700126304987, 'Exterior1st'),
          (0.8266086111481783, 'Exterior2nd'), (0.82742038469020252, 'Foundation'), (0.82763808057540433, 'GarageArea'),
          (0.83076989529424883, 'LandSlope'), (0.83296040596747323, 'Condition2'), (0.83628884685336957, 'RoofMatl')]
-    to_drop = ['PoolQC', 'Fence', "MiscFeature", "Alley"]
-    # to_drop = [each[1] for each in l]
+    # to_drop = ['PoolQC', 'Fence', "MiscFeature", "Alley"]
+    to_drop = [each[1] for each in l]
     return DropColumn(to_drop)
 
 

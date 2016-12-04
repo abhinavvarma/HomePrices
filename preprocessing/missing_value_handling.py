@@ -3,7 +3,7 @@ from utils import Stage
 
 class MeaningfulNAs(Stage):
     def run(self, all_data):
-        all_data.loc[all_data.Alley.isnull(), 'Alley'] = 'NoAlley'
+        # all_data.loc[all_data.Alley.isnull(), 'Alley'] = 'NoAlley'
         all_data.loc[all_data.MasVnrType.isnull(), 'MasVnrType'] = 'None'
         all_data.loc[all_data.MasVnrType == 'None', 'MasVnrArea'] = 0
         all_data.loc[all_data.BsmtQual.isnull(), 'BsmtQual'] = 'NoBsmt'
@@ -22,8 +22,8 @@ class MeaningfulNAs(Stage):
         all_data.loc[all_data.GarageFinish.isnull(), 'GarageFinish'] = 'NoGarage'
         all_data.loc[all_data.GarageQual.isnull(), 'GarageQual'] = 'NoGarage'
         all_data.loc[all_data.GarageCond.isnull(), 'GarageCond'] = 'NoGarage'
-        all_data.loc[all_data.BsmtFullBath.isnull(), 'BsmtFullBath'] = 0
-        all_data.loc[all_data.BsmtHalfBath.isnull(), 'BsmtHalfBath'] = 0
+        # all_data.loc[all_data.BsmtFullBath.isnull(), 'BsmtFullBath'] = 0
+        # all_data.loc[all_data.BsmtHalfBath.isnull(), 'BsmtHalfBath'] = 0
         all_data.loc[all_data.KitchenQual.isnull(), 'KitchenQual'] = 'TA'
         all_data.loc[all_data.MSZoning.isnull(), 'MSZoning'] = 'RL'
         all_data.loc[all_data.Utilities.isnull(), 'Utilities'] = 'AllPub'
@@ -32,9 +32,9 @@ class MeaningfulNAs(Stage):
         all_data.loc[all_data.Functional.isnull(), 'Functional'] = 'Typ'
         all_data.loc[all_data.SaleCondition.isnull(), 'SaleCondition'] = 'Normal'
         all_data.loc[all_data.SaleCondition.isnull(), 'SaleType'] = 'WD'
-        all_data.loc[all_data['PoolQC'].isnull(), 'PoolQC'] = 'NoPool'
-        all_data.loc[all_data['Fence'].isnull(), 'Fence'] = 'NoFence'
-        all_data.loc[all_data['MiscFeature'].isnull(), 'MiscFeature'] = 'None'
+        # all_data.loc[all_data['PoolQC'].isnull(), 'PoolQC'] = 'NoPool'
+        # all_data.loc[all_data['Fence'].isnull(), 'Fence'] = 'NoFence'
+        # all_data.loc[all_data['MiscFeature'].isnull(), 'MiscFeature'] = 'None'
         all_data.loc[all_data['Electrical'].isnull(), 'Electrical'] = 'SBrkr'
         # only one is null and it has type Detchd
         all_data.loc[all_data['GarageArea'].isnull(), 'GarageArea'] = all_data.loc[
