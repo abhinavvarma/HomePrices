@@ -5,6 +5,7 @@ from sklearn import linear_model
 
 import preparation
 import preprocessing
+from preprocessing import outlier_analysis
 
 
 def split_xy(all_data):
@@ -46,6 +47,7 @@ def normalize_target(series):
 
 def run_preprocessing_stages(preprocessing_stages):
     training_data = pd.read_csv("./dataset/train.csv")
+    training_data = outlier_analysis.DropRows().run(training_data)
     x, y = split_xy(training_data)
     # x_processed = preprocessing.run(x)
     x_processed = preprocessing.run_stages(x, preprocessing_stages)
@@ -79,5 +81,5 @@ def run_everything():
 
 
 if __name__ == '__main__':
-    # run_everything()
-    calculate_preprocessing_impact()
+    run_everything()
+    # calculate_preprocessing_impact()
